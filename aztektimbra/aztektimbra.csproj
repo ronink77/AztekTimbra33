@@ -46,7 +46,6 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilerias\Encrypt.cs" />
     <Compile Include="Utilerias\opensslkey.cs" />
     <Compile Include="Utilerias\SelloDigital.cs" />
   </ItemGroup>
