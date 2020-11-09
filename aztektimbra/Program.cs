@@ -106,7 +106,28 @@ namespace aztektimbra
                     num = fileStream4.Read(numArray3, 0, length2);
                     fileStream4.Close();
 
-                }
+                    //Cargamos el XML sellado  en una matriz  y lo convierte en Base64         
+                    byte[] rutaxmlsellado = System.IO.File.ReadAllBytes(commandLineArg6);
+                    string xmlBase64 = Convert.ToBase64String(rutaxmlsellado);
+
+                    //Imprime un fichero con el resultado de la converción del XML sellado.
+                    System.IO.File.WriteAllText(@"C:\\cfdi\\xmlBase64.txt", xmlBase64);
+
+                    /*
+                   //---------------nicia proceso de timbrado del XML---------------
+                   //Crear el objeto cliente
+                   ServiceReference1.timbrado_cfdi33_portClient cliente_timbrar = new ServiceReference1.timbrado_cfdi33_portClient();
+
+                    //Crear el objeto de la respuesta
+                
+                    ServiceReference1.timbrar_cfdi_result response = new ServiceReference1.timbrar_cfdi_result();
+                 
+
+                    //llamar el método de timbrado enviándole los 
+                    //parámetros con las credenciales y el xml en formato base64
+                   response = cliente_timbrar.timbrar_cfdi("AAA010101000", "h6584D56fVdBbSmmnB", codificado);
+
+                 */                                  }
 
             }
 

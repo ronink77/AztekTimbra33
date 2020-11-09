@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:WashOut" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="timbrado_cfdi33" targetNamespace="urn:WashOut" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:WashOut">
+      <xsd:complexType name="timbrar_cfdi_result">
+        <xsd:sequence>
+          <xsd:element name="xml" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="timbrar_cfdi_referencia_result">
+        <xsd:sequence>
+          <xsd:element name="xml" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="timbrar_zip_result">
+        <xsd:sequence>
+          <xsd:element name="xml" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="parametros_cfdis">
+        <xsd:sequence>
+          <xsd:element name="rfc_emisor" nillable="true" type="xsd:string" />
+          <xsd:element name="rfc_receptor" nillable="true" type="xsd:string" />
+          <xsd:element name="fecha_emision_inicio" nillable="true" type="xsd:string" />
+          <xsd:element name="fecha_emision_fin" nillable="true" type="xsd:string" />
+          <xsd:element name="fecha_timbrado_inicio" nillable="true" type="xsd:string" />
+          <xsd:element name="fecha_timbrado_fin" nillable="true" type="xsd:string" />
+          <xsd:element name="cancelado" nillable="true" type="xsd:string" />
+          <xsd:element name="external_id" nillable="true" type="xsd:string" />
+          <xsd:element name="uuid" nillable="true" type="xsd:string" />
+          <xsd:element name="folio" nillable="true" type="xsd:string" />
+          <xsd:element name="serie" nillable="true" type="xsd:string" />
+          <xsd:element name="limit" nillable="true" type="xsd:string" />
+          <xsd:element name="offset" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="buscar_cfdis_result">
+        <xsd:sequence>
+          <xsd:element name="estatus" nillable="true" type="xsd:string" />
+          <xsd:element name="cantidad" nillable="true" type="xsd:string" />
+          <xsd:element name="comprobantes" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="parametros_acuse">
+        <xsd:sequence>
+          <xsd:element name="uuids" nillable="true" type="tns:uuid" />
+          <xsd:element name="fecha_timbrado_inicio" nillable="true" type="xsd:string" />
+          <xsd:element name="fecha_timbrado_fin" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="uuid">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="uuid" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="buscar_acuse_recepcion_result">
+        <xsd:sequence>
+          <xsd:element name="acuses" nillable="true" type="xsd:string" />
+          <xsd:element name="uuids_erroneos" nillable="true" type="tns:uuid" />
+          <xsd:element name="uuids_no_encontrados" nillable="true" type="tns:uuid" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="recuperar_comprobante_result">
+        <xsd:sequence>
+          <xsd:element name="estatus" nillable="true" type="xsd:string" />
+          <xsd:element name="cantidad" nillable="true" type="xsd:string" />
+          <xsd:element name="comprobantes" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="external_id">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="external_id" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="recuperar_comprobante_referencia">
+        <xsd:sequence>
+          <xsd:element name="estatus" nillable="true" type="xsd:string" />
+          <xsd:element name="cantidad" nillable="true" type="xsd:string" />
+          <xsd:element name="comprobantes" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="obtener_consumo_result">
+        <xsd:sequence>
+          <xsd:element name="plan_actual" nillable="true" type="xsd:string" />
+          <xsd:element name="creditos_asignados" nillable="true" type="xsd:int" />
+          <xsd:element name="creditos_usados" nillable="true" type="xsd:int" />
+          <xsd:element name="inicio_plan" nillable="true" type="xsd:string" />
+          <xsd:element name="fin_plan" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="consulta_rfc_result">
+        <xsd:sequence>
+          <xsd:element name="codigo" nillable="true" type="xsd:string" />
+          <xsd:element name="status" nillable="true" type="xsd:string" />
+          <xsd:element name="informacion" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="consulta_lco_result">
+        <xsd:sequence>
+          <xsd:element name="codigo" nillable="true" type="xsd:string" />
+          <xsd:element name="status" nillable="true" type="xsd:string" />
+          <xsd:element name="informacion" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="timbrar_cfdi">
+    <wsdl:part xsi:nillable="true" name="username" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="password" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="sxml" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="timbrar_cfdi_response">
+    <wsdl:part xsi:nillable="true" name="timbrar_cfdi_result" type="tns:timbrar_cfdi_result" />
+  </wsdl:message>
+  <wsdl:message name="timbrar_cfdi_referencia">
+    <wsdl:part xsi:nillable="true" name="username" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="password" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="sxml" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="external_id" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="timbrar_cfdi_referencia_response">
+    <wsdl:part xsi:nillable="true" name="timbrar_cfdi_referencia_result" type="tns:timbrar_cfdi_referencia_result" />
+  </wsdl:message>
+  <wsdl:message name="timbrar_zip">
+    <wsdl:part xsi:nillable="true" name="username" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="password" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="zipbase64" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="timbrar_zip_response">
+    <wsdl:part xsi:nillable="true" name="timbrar_zip_result" type="tns:timbrar_zip_result" />
+  </wsdl:message>
+  <wsdl:message name="buscar_cfdis">
+    <wsdl:part xsi:nillable="true" name="username" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="password" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="parametros_cfdis" type="tns:parametros_cfdis" />
+  </wsdl:message>
+  <wsdl:message name="buscar_cfdis_response">
+    <wsdl:part xsi:nillable="true" name="buscar_cfdis_result" type="tns:buscar_cfdis_result" />
+  </wsdl:message>
+  <wsdl:message name="buscar_acuse_recepcion">
+    <wsdl:part xsi:nillable="true" name="username" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="password" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="parametros_acuse" type="tns:parametros_acuse" />
+  </wsdl:message>
+  <wsdl:message name="buscar_acuse_recepcion_response">
+    <wsdl:part xsi:nillable="true" name="buscar_acuse_recepcion_result" type="tns:buscar_acuse_recepcion_result" />
+  </wsdl:message>
+  <wsdl:message name="recuperar_comprobante">
+    <wsdl:part xsi:nillable="true" name="username" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="password" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="uuids" type="tns:uuid" />
+  </wsdl:message>
+  <wsdl:message name="recuperar_comprobante_response">
+    <wsdl:part xsi:nillable="true" name="recuperar_comprobante_result" type="tns:recuperar_comprobante_result" />
+  </wsdl:message>
+  <wsdl:message name="recuperar_comprobante_referencia">
+    <wsdl:part xsi:nillable="true" name="username" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="password" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="external_ids" type="tns:external_id" />
+  </wsdl:message>
+  <wsdl:message name="recuperar_comprobante_referencia_response">
+    <wsdl:part xsi:nillable="true" name="recuperar_comprobante_referencia" type="tns:recuperar_comprobante_referencia" />
+  </wsdl:message>
+  <wsdl:message name="obtener_consumo">
+    <wsdl:part xsi:nillable="true" name="username" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="password" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="obtener_consumo_response">
+    <wsdl:part xsi:nillable="true" name="obtener_consumo_result" type="tns:obtener_consumo_result" />
+  </wsdl:message>
+  <wsdl:message name="consulta_rfc">
+    <wsdl:part xsi:nillable="true" name="username" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="password" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="rfc" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="consulta_rfc_response">
+    <wsdl:part xsi:nillable="true" name="consulta_rfc_result" type="tns:consulta_rfc_result" />
+  </wsdl:message>
+  <wsdl:message name="consulta_lco">
+    <wsdl:part xsi:nillable="true" name="username" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="password" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="rfc" type="xsd:string" />
+    <wsdl:part xsi:nillable="true" name="no_certificado" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="consulta_lco_response">
+    <wsdl:part xsi:nillable="true" name="consulta_lco_result" type="tns:consulta_lco_result" />
+  </wsdl:message>
+  <wsdl:portType name="timbrado_cfdi33_port">
+    <wsdl:operation name="timbrar_cfdi">
+      <wsdl:input message="tns:timbrar_cfdi" />
+      <wsdl:output message="tns:timbrar_cfdi_response" />
+    </wsdl:operation>
+    <wsdl:operation name="timbrar_cfdi_referencia">
+      <wsdl:input message="tns:timbrar_cfdi_referencia" />
+      <wsdl:output message="tns:timbrar_cfdi_referencia_response" />
+    </wsdl:operation>
+    <wsdl:operation name="timbrar_zip">
+      <wsdl:input message="tns:timbrar_zip" />
+      <wsdl:output message="tns:timbrar_zip_response" />
+    </wsdl:operation>
+    <wsdl:operation name="buscar_cfdis">
+      <wsdl:input message="tns:buscar_cfdis" />
+      <wsdl:output message="tns:buscar_cfdis_response" />
+    </wsdl:operation>
+    <wsdl:operation name="buscar_acuse_recepcion">
+      <wsdl:input message="tns:buscar_acuse_recepcion" />
+      <wsdl:output message="tns:buscar_acuse_recepcion_response" />
+    </wsdl:operation>
+    <wsdl:operation name="recuperar_comprobante">
+      <wsdl:input message="tns:recuperar_comprobante" />
+      <wsdl:output message="tns:recuperar_comprobante_response" />
+    </wsdl:operation>
+    <wsdl:operation name="recuperar_comprobante_referencia">
+      <wsdl:input message="tns:recuperar_comprobante_referencia" />
+      <wsdl:output message="tns:recuperar_comprobante_referencia_response" />
+    </wsdl:operation>
+    <wsdl:operation name="obtener_consumo">
+      <wsdl:input message="tns:obtener_consumo" />
+      <wsdl:output message="tns:obtener_consumo_response" />
+    </wsdl:operation>
+    <wsdl:operation name="consulta_rfc">
+      <wsdl:input message="tns:consulta_rfc" />
+      <wsdl:output message="tns:consulta_rfc_response" />
+    </wsdl:operation>
+    <wsdl:operation name="consulta_lco">
+      <wsdl:input message="tns:consulta_lco" />
+      <wsdl:output message="tns:consulta_lco_response" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="timbrado_cfdi33_binding" type="tns:timbrado_cfdi33_port">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="timbrar_cfdi">
+      <soap:operation soapAction="timbrar_cfdi" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="timbrar_cfdi_referencia">
+      <soap:operation soapAction="timbrar_cfdi_referencia" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="timbrar_zip">
+      <soap:operation soapAction="timbrar_zip" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscar_cfdis">
+      <soap:operation soapAction="buscar_cfdis" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscar_acuse_recepcion">
+      <soap:operation soapAction="buscar_acuse_recepcion" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recuperar_comprobante">
+      <soap:operation soapAction="recuperar_comprobante" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recuperar_comprobante_referencia">
+      <soap:operation soapAction="recuperar_comprobante_referencia" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtener_consumo">
+      <soap:operation soapAction="obtener_consumo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta_rfc">
+      <soap:operation soapAction="consulta_rfc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta_lco">
+      <soap:operation soapAction="consulta_lco" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:WashOut" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="service">
+    <wsdl:port name="timbrado_cfdi33_port" binding="tns:timbrado_cfdi33_binding">
+      <soap:address location="https://staging.ws.timbox.com.mx/timbrado_cfdi33/action" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
